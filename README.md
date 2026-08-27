@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cornerstone Brampton — independent landing page
 
-## Getting Started
+Independent informational website for **Cornerstone by Primont Homes** in Northwest Brampton, Ontario. This is not the official Primont or Cornerstone website.
 
-First, run the development server:
+The page is a production-ready Next.js App Router lead-generation resource. Public advertising remains blocked until legal publisher identity, privacy review, lead destination and (if used) authorized renderings are supplied.
+
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript (strict)
+- Tailwind CSS v4
+- Zod v4 server-side validation
+
+## Installation
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Fill publisher and lead-destination values in `.env.local` before any public launch.
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run typecheck
+npm run lint
+npm run build
+npm start
+```
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+See `.env.example`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, sitemap, JSON-LD and emails |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional GA4 measurement ID. Loaded lazily. Never receives PII. |
+| `PUBLISHER_NAME` / `PUBLISHER_LEGAL_NAME` | Legal publisher or brokerage identity |
+| `PUBLISHER_EMAIL` / `PUBLISHER_PHONE` / `PUBLISHER_ADDRESS` | Public contact details |
+| `PRIVACY_POLICY_REVIEWED` | Set `true` only after counsel reviews `/privacy` |
+| `LEAD_FILE_STORE` | Launch placeholder JSONL store in `.data/leads.jsonl` (default on) |
+| `LEAD_WEBHOOK_URL` / `LEAD_WEBHOOK_SECRET` | CRM or automation webhook |
+| `LEAD_NOTIFY_EMAIL` / `LEAD_FROM_EMAIL` / `RESEND_API_KEY` | Internal notice + acknowledgement email via Resend |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Do not put CRM credentials in client JavaScript.
 
-## Deploy on Vercel
+## Lead integration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Server route: `POST /api/leads`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Flow:
+
+1. Zod validation and sanitization
+2. Honeypot (`companyWebsite`)
+3. In-memory rate limit and duplicate-submit window
+4. Adapter routing:
+   - **file-store** — `.data/leads.jsonl` launch placeholder
+   - **webhook** — JSON POST to `LEAD_WEBHOOK_URL`
+   - **email** — Resend internal notification plus registrant acknowledgement
+
+Success copy never claims that a price list or floor plans were emailed.
+
+To add a CRM, implement another adapter in `src/lib/leads/adapters/` and register it in `src/lib/leads/capture.ts`.
+
+## Analytics
+
+Events (no names, emails, phones or free text):
+
+- `hero_cta_click`
+- `form_start`
+- `form_field_error`
+- `form_submit_attempt`
+- `generate_lead` — only after confirmed server capture
+- `phone_click`
+- `email_click`
+- `document_download` — only if a real download is later added
+- `section_engagement`
+
+## How to update project facts
+
+Edit `src/data/project.ts`. That file is the source of truth for:
+
+- release timing
+- pricing display
+- housing types
+- bedroom positioning
+- TBA fields
+- CTA labels
+- verification date
+
+Do not hard-code competing values in components. After Primont publishes a price list or floor plans:
+
+1. Re-check the official Cornerstone page and any official PDF supplied to `public/documents/`.
+2. Update the relevant fields in `src/data/project.ts`.
+3. Change the primary CTA to **Get Prices & Floor Plans** only after the files exist and delivery actually works.
+4. Record the new verification date.
+
+FAQ copy lives in `src/data/faqs.ts`. Source ledger: `src/data/sources.ts`.
+
+## Official project assets
+
+Place authorized files here:
+
+- `public/images/` — authorized Cornerstone renderings (replace supporting Unsplash photos)
+- `public/documents/` — official brochure, price list, floor plans, deposit schedule
+
+Until authorized renderings arrive, images are supporting photography and must not be labelled as Cornerstone homes.
+
+## Deployment
+
+Any Node host that supports Next.js 16 (Vercel, similar). Set all environment variables on the host. Confirm:
+
+1. `NEXT_PUBLIC_SITE_URL` is the public HTTPS origin
+2. Publisher identity is real
+3. Privacy policy has been reviewed
+4. At least one durable lead destination is configured
+5. `LEAD_FILE_STORE=false` in production if you do not want filesystem capture
+
+## Launch blockers
+
+Still required before public launch:
+
+- Legal publisher / brokerage name
+- Publisher contact details
+- Privacy policy review
+- Lead CRM / webhook / email destination
+- Authorized project renderings (if the hero should show Cornerstone itself)
+
+Optional before publishing claims based on them:
+
+- Official brochure
+- Official price list
+- Official floor plans
+- Official deposit schedule
+- Official incentives
+
+## Official fact re-check (20 August 2026)
+
+| Check | Result |
+| --- | --- |
+| September 2026 | Official project page still says “Coming September 2026.” Other Primont pages say “Coming Fall 2026.” |
+| From the $600s | Still current on the official project page |
+| Townhomes and detached homes | Still current |
+| 3–5 bedrooms | Still current on the Primont homepage |
+| Official price list | Not published |
+| Official floor plans | Not published |
+| Deposit schedule | Not published |
+| Incentives | Not published |
+| Precise civic address | Not published on the official project page |
+| Now selling? | No — still coming soon |
+
+Primary source: [https://primont.com/low-rise/brampton/cornerstone](https://primont.com/low-rise/brampton/cornerstone)

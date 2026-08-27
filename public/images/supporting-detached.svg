@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Abstract illustration of a detached house. Supporting artwork, not a Cornerstone rendering.">
+  <rect width="1600" height="1000" fill="#EFE8DC"/>
+  <rect x="0" y="700" width="1600" height="300" fill="#D9D1C3"/>
+  <polygon points="250,700 800,220 1350,700" fill="#2F4A3C"/>
+  <rect x="430" y="430" width="740" height="380" fill="#F6F3EE"/>
+  <rect x="720" y="560" width="160" height="250" fill="#24382E"/>
+  <rect x="520" y="520" width="130" height="110" fill="#8A6F4A" opacity="0.7"/>
+  <rect x="950" y="520" width="130" height="110" fill="#8A6F4A" opacity="0.7"/>
+</svg>
