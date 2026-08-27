@@ -19,6 +19,7 @@ const sourceSans = Source_Sans_3({
 });
 
 const publisher = getPublisher();
+const publisherName = publisher.displayName || SITE.name;
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),
@@ -28,9 +29,9 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   applicationName: SITE.name,
-  authors: [{ name: publisher.name }],
-  creator: publisher.name,
-  publisher: publisher.name,
+  authors: [{ name: publisherName }],
+  creator: publisherName,
+  publisher: publisherName,
   keywords: [
     "Cornerstone Brampton",
     "Primont Homes",

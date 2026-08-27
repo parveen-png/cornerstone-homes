@@ -84,7 +84,7 @@ export const DISCLOSURE = {
   short:
     "Independent informational website. Not the official website of Primont Homes or Cornerstone.",
   footer:
-    "This is an independent informational website and is not the official website of the developer, builder or project. Project details, prices, incentives, specifications, dates and availability are subject to change without notice. Renderings are artists' concepts where applicable. Supporting photographs on this site are not official Cornerstone project renderings. This website is not an offering for sale. Any offering may be made only through the developer's official documents and applicable Agreement of Purchase and Sale. E.&O.E. Final wording is flagged for Ontario legal and compliance review before public launch.",
+    "This is an independent informational website and is not the official website of the developer, builder or project. Project details, prices, incentives, specifications, dates and availability are subject to change without notice. Renderings are artists' concepts where applicable. Supporting photographs on this site are not official Cornerstone project renderings. This website is not an offering for sale. Any offering may be made only through the developer's official documents and applicable Agreement of Purchase and Sale. E.&O.E.",
 } as const;
 
 export const HOME_INTEREST_OPTIONS = [

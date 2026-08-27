@@ -18,12 +18,9 @@ export default function AccessibilityPage() {
         focus, labelled form fields, accessible validation, and reduced-motion support.
       </p>
       <p>
-        If you encounter a barrier, contact {publisher.email} and describe the page, the issue,
-        and any assistive technology you use. We will work to address reported barriers.
-      </p>
-      <p>
-        This statement does not constitute a certified audit. A formal accessibility review should
-        be completed before high-traffic advertising.
+        If you encounter a barrier
+        {publisher.email ? `, contact ${publisher.email} and` : ","} describe the page, the
+        issue, and any assistive technology you use. We will work to address reported barriers.
       </p>
     </LegalShell>
   );

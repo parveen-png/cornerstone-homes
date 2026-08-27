@@ -6,6 +6,7 @@ import { ContactLinks } from "@/components/ContactLinks";
 export function Footer() {
   const publisher = getPublisher();
   const year = new Date().getFullYear();
+  const copyrightName = publisher.displayName || SITE.name;
 
   return (
     <footer className="bg-ink text-canvas">
@@ -16,10 +17,12 @@ export function Footer() {
             Independent information about Cornerstone by Primont Homes in Northwest Brampton.
             Not affiliated with Primont Homes.
           </p>
-          <p className="mt-5 text-sm">
-            <strong className="font-semibold">Publisher:</strong> {publisher.legalName || publisher.name}
-          </p>
-          <p className="mt-1 text-sm">{publisher.address}</p>
+          {publisher.displayName ? (
+            <p className="mt-5 text-sm">
+              <strong className="font-semibold">Publisher:</strong> {publisher.displayName}
+            </p>
+          ) : null}
+          {publisher.address ? <p className="mt-1 text-sm">{publisher.address}</p> : null}
           <ContactLinks email={publisher.email} phone={publisher.phone} />
         </div>
         <nav aria-label="Footer">
@@ -61,7 +64,7 @@ export function Footer() {
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
           <p className="text-xs leading-6 text-canvas-warm">{DISCLOSURE.footer}</p>
           <p className="mt-4 text-xs text-canvas-warm/80">
-            © {year} {publisher.name}. All rights reserved. Photo credits: Unsplash supporting
+            © {year} {copyrightName}. All rights reserved. Photo credits: Unsplash supporting
             photography; images are not Cornerstone renderings.
           </p>
         </div>

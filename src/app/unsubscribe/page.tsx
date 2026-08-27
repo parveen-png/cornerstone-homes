@@ -13,8 +13,7 @@ export default function UnsubscribePage() {
     <LegalShell title="Unsubscribe / email preferences">
       <p>
         Use this form to stop commercial electronic messages from this independent Cornerstone
-        Brampton website. Unsubscribe handling should be connected to the production email
-        provider before launch.
+        Brampton website.
       </p>
       <UnsubscribeForm />
     </LegalShell>

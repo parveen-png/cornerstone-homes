@@ -277,7 +277,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
           </span>
         </label>
         <p id={`${id}-consent-note`} className="mt-2 text-xs text-ink-muted">
-          Consent is not pre-checked. Final wording should be reviewed by Ontario legal counsel before launch.
+          You can unsubscribe at any time.
         </p>
         {errors.consent ? (
           <p id={`${id}-consent-error`} className="mt-1 text-sm text-error" role="alert">

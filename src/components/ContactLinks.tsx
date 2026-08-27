@@ -3,8 +3,10 @@
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 
 export function ContactLinks({ email, phone }: { email: string; phone: string }) {
-  const emailOk = email && !email.startsWith("[");
-  const phoneOk = phone && !phone.startsWith("[");
+  const emailOk = Boolean(email) && !email.startsWith("[");
+  const phoneOk = Boolean(phone) && !phone.startsWith("[");
+
+  if (!emailOk && !phoneOk) return null;
 
   return (
     <p className="mt-3 flex flex-col gap-1 text-sm">
@@ -16,9 +18,7 @@ export function ContactLinks({ email, phone }: { email: string; phone: string })
         >
           {email}
         </a>
-      ) : (
-        <span>{email}</span>
-      )}
+      ) : null}
       {phoneOk ? (
         <a
           href={`tel:${phone.replace(/[^\d+]/g, "")}`}
@@ -27,9 +27,7 @@ export function ContactLinks({ email, phone }: { email: string; phone: string })
         >
           {phone}
         </a>
-      ) : (
-        <span>{phone}</span>
-      )}
+      ) : null}
     </p>
   );
 }

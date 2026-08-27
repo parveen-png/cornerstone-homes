@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalShell } from "@/components/LegalShell";
-import { DISCLOSURE } from "@/data/project";
+import { DISCLOSURE, SITE } from "@/data/project";
 import { getPublisher } from "@/data/publisher";
 
 export const metadata: Metadata = {
@@ -15,8 +15,8 @@ export default function TermsPage() {
   return (
     <LegalShell title="Terms of Use">
       <p>
-        <strong>Flagged for legal review before launch.</strong> These terms describe an
-        independent information website published by {publisher.legalName}.
+        These terms describe an independent information website
+        {publisher.displayName ? ` published by ${publisher.displayName}` : ` operated as ${SITE.name}`}.
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">No affiliation</h2>
       <p>

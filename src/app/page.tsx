@@ -12,7 +12,6 @@ import { FAQ } from "@/components/FAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { LaunchBanner } from "@/components/LaunchBanner";
 import { StickyMobileCta } from "@/components/StickyMobileCta";
 import { SectionTracker } from "@/components/SectionTracker";
 
@@ -20,7 +19,6 @@ export default function HomePage() {
   return (
     <>
       <JsonLd />
-      <LaunchBanner />
       <Header />
       <main id="main" className="pb-20 md:pb-0">
         <Hero />

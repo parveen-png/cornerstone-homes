@@ -16,16 +16,12 @@ export default function PrivacyPage() {
 
   return (
     <LegalShell title="Privacy Policy">
-      <p>
-        <strong>Launch blocker:</strong> this policy is a working draft. It must be reviewed by
-        Ontario privacy and marketing-compliance counsel before personal information is collected
-        in production. Last updated {PROJECT.verificationDateDisplay}.
-      </p>
+      <p>Last updated {PROJECT.verificationDateDisplay}.</p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Who we are</h2>
       <p>
-        This website is published by {publisher.legalName}. It is an independent informational
-        resource about Cornerstone by Primont Homes and is not the official website of Primont or
-        Cornerstone.
+        This website is an independent informational resource about Cornerstone by Primont Homes
+        {publisher.displayName ? `, published by ${publisher.displayName}` : ""}. It is not the
+        official website of Primont or Cornerstone.
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Information we collect</h2>
       <p>
@@ -51,14 +47,15 @@ export default function PrivacyPage() {
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Retention and sharing</h2>
       <p>
-        Lead records may be stored with a CRM, webhook destination or email provider configured by
-        the publisher. We do not sell personal information. Service providers process data only to
+        Lead records may be stored with a CRM, webhook destination or email provider configured for
+        this website. We do not sell personal information. Service providers process data only to
         deliver the requested services.
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Contact</h2>
       <p>
-        Privacy questions: {publisher.email}. If this address is still a placeholder, do not
-        collect live leads.
+        {publisher.email
+          ? `Privacy questions: ${publisher.email}.`
+          : "For privacy questions, use the update form on the homepage or the unsubscribe page to manage email preferences."}
       </p>
     </LegalShell>
   );

@@ -15,10 +15,10 @@ export function JsonLd() {
     {
       "@type": "Organization",
       "@id": orgId,
-      name: publisher.name,
+      name: publisher.displayName || SITE.name,
       url: pageUrl,
-      email: publisher.email.startsWith("[") ? undefined : publisher.email,
-      telephone: publisher.phone.startsWith("[") ? undefined : publisher.phone,
+      email: publisher.email || undefined,
+      telephone: publisher.phone || undefined,
       description:
         "Independent informational publisher covering Cornerstone by Primont Homes in Northwest Brampton. Not affiliated with Primont Homes.",
     },

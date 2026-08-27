@@ -41,10 +41,8 @@ export function acknowledgementEmail(lead: CapturedLead) {
     "",
     `If you no longer wish to receive these emails, unsubscribe here: ${unsubscribe}`,
     "",
-    publisher.isConfigured
-      ? `Publisher: ${publisher.legalName || publisher.name}`
-      : "Publisher identity will be confirmed before public launch.",
-    publisher.email.startsWith("[") ? "" : `Contact: ${publisher.email}`,
+    publisher.displayName ? `Publisher: ${publisher.displayName}` : `${SITE.name}`,
+    publisher.email ? `Contact: ${publisher.email}` : "",
     "",
     DISCLOSURE.short,
   ]
@@ -57,7 +55,7 @@ export function acknowledgementEmail(lead: CapturedLead) {
     <p>We have received your inquiry. We will share new verified project information — including pricing, floor plans and release details — as it becomes available from official sources. This message does not include a price list or floor-plan package because those documents have not been released.</p>
     <p>${escapeHtml(SITE.name)} is an independent informational website and is not the official website of Primont Homes or Cornerstone.</p>
     <p>If you no longer wish to receive these emails, <a href="${unsubscribe}">unsubscribe here</a>.</p>
-    <p>${publisher.isConfigured ? `Publisher: ${escapeHtml(publisher.legalName || publisher.name)}` : "Publisher identity will be confirmed before public launch."}${publisher.email.startsWith("[") ? "" : `<br/>Contact: ${escapeHtml(publisher.email)}`}</p>
+    <p>${publisher.displayName ? `Publisher: ${escapeHtml(publisher.displayName)}` : escapeHtml(SITE.name)}${publisher.email ? `<br/>Contact: ${escapeHtml(publisher.email)}` : ""}</p>
     <p><em>${escapeHtml(DISCLOSURE.short)}</em></p>
   `;
 
@@ -90,8 +88,8 @@ export function internalLeadEmail(lead: CapturedLead) {
     `Form version: ${lead.formVersion}`,
     `Page version: ${lead.pageVersion}`,
     `Lead ID: ${lead.id}`,
-    `Notify mailbox: ${publisher.email}`,
-  ];
+    publisher.email ? `Notify mailbox: ${publisher.email}` : "",
+  ].filter(Boolean);
 
   return {
     subject,
