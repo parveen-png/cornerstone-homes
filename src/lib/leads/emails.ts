@@ -3,10 +3,11 @@ import { getPublisher } from "@/data/publisher";
 import { absoluteUrl } from "@/lib/site";
 import type { CapturedLead } from "@/lib/leads/schema";
 
-function interestLabel(value: string) {
+function interestLabel(value?: string) {
   if (value === "townhome") return "Townhome";
   if (value === "detached") return "Detached Home";
-  return "Not Sure Yet";
+  if (value === "not_sure") return "Not Sure Yet";
+  return "Not provided";
 }
 
 function timelineLabel(value?: string) {

@@ -25,10 +25,10 @@ export default function PrivacyPage() {
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Information we collect</h2>
       <p>
-        If you submit the update form, we collect first name, last name, email, optional phone
-        number, home interest, optional buyer timeline, marketing consent, and technical
-        attribution data such as landing-page URL, referrer, UTM parameters and advertising click
-        IDs. We also collect a timestamp, timezone, form version and consent-text version.
+        If you submit the update form, we collect first name, last name, email, marketing consent,
+        and technical attribution data such as landing-page URL, referrer, UTM parameters and
+        advertising click IDs. We also collect a timestamp, timezone, form version and consent-text
+        version.
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">How we use it</h2>
       <p>

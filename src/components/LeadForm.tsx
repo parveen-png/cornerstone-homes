@@ -3,13 +3,10 @@
 import Link from "next/link";
 import { FormEvent, useRef, useState } from "react";
 import {
-  BUYER_TIMELINE_OPTIONS,
   CONSENT_TEXT,
   CONSENT_TEXT_VERSION,
   CTA,
-  DISCLOSURE,
   FORM_VERSION,
-  HOME_INTEREST_OPTIONS,
   PAGE_VERSION,
 } from "@/data/project";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
@@ -18,9 +15,6 @@ type FormState = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
-  homeInterest: string;
-  buyerTimeline: string;
   consent: boolean;
   companyWebsite: string;
 };
@@ -29,9 +23,6 @@ const INITIAL: FormState = {
   firstName: "",
   lastName: "",
   email: "",
-  phone: "",
-  homeInterest: "",
-  buyerTimeline: "",
   consent: false,
   companyWebsite: "",
 };
@@ -131,9 +122,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
 
       trackEvent(ANALYTICS_EVENTS.generateLead, { form_id: id });
       setStatus("success");
-      setServerMessage(
-        "You're registered for Cornerstone updates. We'll share new project information as it becomes available.",
-      );
+      setServerMessage("You're registered for Cornerstone updates.");
       setValues(INITIAL);
       setErrors({});
     } catch {
@@ -150,10 +139,8 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
       noValidate
       onSubmit={onSubmit}
       className={`rounded-2xl border border-line bg-paper shadow-[0_1px_0_rgba(30,28,24,0.04)] ${compact ? "p-4 sm:p-5" : "p-5 sm:p-6 lg:p-7"}`}
-      aria-describedby={`${id}-disclosure`}
     >
       <h2 className={`font-serif text-ink ${compact ? "text-xl" : "text-2xl"}`}>{heading}</h2>
-      {compact ? null : <p className="mt-2 text-sm text-ink-muted">{CTA.supporting}</p>}
 
       {status === "success" ? (
         <div
@@ -176,7 +163,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
       <div className={`${compact ? "mt-4 gap-3" : "mt-5 gap-4"} grid sm:grid-cols-2`}>
         <Field
           id={`${id}-firstName`}
-          label="First Name"
+          label="First name"
           required
           autoComplete="given-name"
           value={values.firstName}
@@ -186,7 +173,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
         />
         <Field
           id={`${id}-lastName`}
-          label="Last Name"
+          label="Last name"
           required
           autoComplete="family-name"
           value={values.lastName}
@@ -205,45 +192,8 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
           error={errors.email}
           onChange={(value) => update("email", value)}
           onFocus={markStart}
+          className="sm:col-span-2"
         />
-        <Field
-          id={`${id}-phone`}
-          label="Phone"
-          type="tel"
-          autoComplete="tel"
-          inputMode="tel"
-          value={values.phone}
-          error={errors.phone}
-          onChange={(value) => update("phone", value)}
-          onFocus={markStart}
-          hint="Optional"
-        />
-        <SelectField
-          id={`${id}-homeInterest`}
-          label="Home Interest"
-          required
-          value={values.homeInterest}
-          error={errors.homeInterest}
-          onChange={(value) => update("homeInterest", value)}
-          onFocus={markStart}
-          options={[
-            { value: "", label: "Select an option" },
-            ...HOME_INTEREST_OPTIONS,
-          ]}
-          className={compact ? "sm:col-span-2" : undefined}
-        />
-        {compact ? null : (
-          <SelectField
-            id={`${id}-buyerTimeline`}
-            label="Buyer Timeline"
-            value={values.buyerTimeline}
-            error={errors.buyerTimeline}
-            onChange={(value) => update("buyerTimeline", value)}
-            onFocus={markStart}
-            options={[...BUYER_TIMELINE_OPTIONS]}
-            hint="Optional"
-          />
-        )}
       </div>
 
       <div className="honeypot" aria-hidden="true">
@@ -268,7 +218,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
             checked={values.consent}
             onChange={(event) => update("consent", event.target.checked)}
             onFocus={markStart}
-            aria-describedby={`${id}-consent-note ${id}-consent-error`}
+            aria-describedby={`${id}-consent-error`}
             aria-invalid={Boolean(errors.consent)}
           />
           <span>
@@ -279,15 +229,6 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
             .
           </span>
         </label>
-        {compact ? (
-          <p id={`${id}-consent-note`} className="sr-only">
-            You can unsubscribe at any time.
-          </p>
-        ) : (
-          <p id={`${id}-consent-note`} className="mt-2 text-xs text-ink-muted">
-            You can unsubscribe at any time.
-          </p>
-        )}
         {errors.consent ? (
           <p id={`${id}-consent-error`} className="mt-1 text-sm text-error" role="alert">
             {errors.consent}
@@ -304,9 +245,6 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
       >
         {disabled ? "Sending your request…" : CTA.primary}
       </button>
-      <p id={`${id}-disclosure`} className="mt-3 text-xs leading-5 text-ink-muted">
-        {DISCLOSURE.short}
-      </p>
     </form>
   );
 }
@@ -323,6 +261,7 @@ type FieldProps = {
   autoComplete?: string;
   inputMode?: "email" | "tel" | "text";
   hint?: string;
+  className?: string;
 };
 
 function Field({
@@ -337,11 +276,12 @@ function Field({
   autoComplete,
   inputMode,
   hint,
+  className,
 }: FieldProps) {
   const errorId = `${id}-error`;
   const hintId = `${id}-hint`;
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className ?? ""}`}>
       <label htmlFor={id} className="text-sm font-medium text-ink">
         {label}
         {required ? <span className="text-error"> *</span> : null}
@@ -364,65 +304,6 @@ function Field({
       <span id={hintId} className="sr-only">
         {hint || ""}
       </span>
-      {error ? (
-        <p id={errorId} className="text-sm text-error" role="alert">
-          {error}
-        </p>
-      ) : (
-        <p id={errorId} className="sr-only" />
-      )}
-    </div>
-  );
-}
-
-function SelectField({
-  id,
-  label,
-  value,
-  onChange,
-  onFocus,
-  error,
-  required,
-  options,
-  hint,
-  className,
-}: {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  onFocus: () => void;
-  error?: string;
-  required?: boolean;
-  options: readonly { value: string; label: string }[];
-  hint?: string;
-  className?: string;
-}) {
-  const errorId = `${id}-error`;
-  return (
-    <div className={`flex flex-col gap-1.5 ${className ?? ""}`}>
-      <label htmlFor={id} className="text-sm font-medium text-ink">
-        {label}
-        {required ? <span className="text-error"> *</span> : null}
-        {hint ? <span className="ml-2 font-normal text-ink-muted">{hint}</span> : null}
-      </label>
-      <select
-        id={id}
-        name={id}
-        required={required}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        onFocus={onFocus}
-        aria-invalid={Boolean(error)}
-        aria-describedby={errorId}
-        className="min-h-12 rounded-xl border border-line bg-canvas px-3 text-base text-ink"
-      >
-        {options.map((option) => (
-          <option key={option.value || "empty"} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
       {error ? (
         <p id={errorId} className="text-sm text-error" role="alert">
           {error}

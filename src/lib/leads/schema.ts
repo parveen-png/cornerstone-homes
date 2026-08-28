@@ -35,9 +35,11 @@ export const leadInputSchema = z.object({
     .max(80, "Last name is too long."),
   email: z.email("Enter a valid email address.").max(254),
   phone: optionalPhone,
-  homeInterest: z.enum(homeInterestValues, {
-    error: "Select a home interest.",
-  }),
+  homeInterest: z
+    .enum(homeInterestValues)
+    .optional()
+    .or(z.literal(""))
+    .transform((value) => (value ? value : undefined)),
   buyerTimeline: z
     .enum(buyerTimelineValues)
     .optional()
