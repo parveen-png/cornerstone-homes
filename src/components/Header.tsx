@@ -20,14 +20,14 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
-        <Link href="/" className="flex shrink-0 items-center bg-white py-1">
+        <Link href="/" className="flex shrink-0 items-center bg-white px-1 py-1">
           <Image
             src="/images/logo.png"
             alt={SITE.name}
-            width={184}
-            height={95}
+            width={909}
+            height={465}
             priority
-            className="h-12 w-auto bg-white sm:h-[3.35rem]"
+            className="h-12 w-auto bg-white sm:h-14"
           />
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
