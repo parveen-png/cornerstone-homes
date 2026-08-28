@@ -123,7 +123,7 @@ Until authorized renderings arrive, images are supporting photography and must n
 
 Any Node host that supports Next.js 16 (Vercel, similar). Set all environment variables on the host. Confirm:
 
-1. `NEXT_PUBLIC_SITE_URL` is the public HTTPS origin
+1. `NEXT_PUBLIC_SITE_URL` is `https://cornerstoneprimont.com`
 2. Publisher identity is real
 3. Privacy policy has been reviewed
 4. Google Sheets OAuth and spreadsheet ID are set (primary lead destination)
