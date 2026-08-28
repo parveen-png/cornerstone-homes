@@ -42,19 +42,19 @@ export function Header() {
           ))}
           <Link
             href="/#register"
-            className="inline-flex min-h-11 items-center rounded-md bg-forest px-4 text-sm font-semibold text-paper transition-colors hover:bg-forest-hover"
+            className="inline-flex min-h-11 items-center rounded-md bg-forest px-3 text-center text-xs font-semibold leading-tight text-paper transition-colors hover:bg-forest-hover sm:px-4 sm:text-sm"
             onClick={() => trackEvent(ANALYTICS_EVENTS.heroCtaClick, { location: "header" })}
           >
-            {CTA.primaryShort}
+            {CTA.primary}
           </Link>
         </nav>
         <div className="flex items-center gap-2 md:hidden">
           <Link
             href="/#register"
-            className="inline-flex min-h-11 items-center rounded-md bg-forest px-4 text-sm font-semibold text-paper"
+            className="inline-flex min-h-11 items-center rounded-md bg-forest px-3 text-center text-xs font-semibold leading-tight text-paper sm:px-4 sm:text-sm"
             onClick={() => trackEvent(ANALYTICS_EVENTS.heroCtaClick, { location: "header-mobile" })}
           >
-            {CTA.primaryShort}
+            {CTA.primary}
           </Link>
           <button
             type="button"

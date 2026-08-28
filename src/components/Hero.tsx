@@ -28,7 +28,7 @@ export function Hero() {
             Townhomes and detached homes from the $600s.
           </p>
         </div>
-        <LeadForm id="hero-register" heading={CTA.primaryShort} compact />
+        <LeadForm id="hero-register" heading={CTA.primary} compact />
       </div>
     </section>
   );

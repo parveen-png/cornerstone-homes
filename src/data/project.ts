@@ -72,11 +72,11 @@ export const PROJECT = {
 } as const;
 
 export const CTA = {
-  primary: "Get Cornerstone Updates",
-  primaryShort: "Get Updates",
+  primary: "Get VIP Pricing & Floorplans",
+  primaryShort: "Get VIP Pricing & Floorplans",
   supporting:
     "Receive new pricing, floor plans, release information and project updates as they become available.",
-  pricing: "Request Pricing Updates",
+  pricing: "Get VIP Pricing & Floorplans",
   requestVerified: "Request the latest verified update",
 } as const;
 

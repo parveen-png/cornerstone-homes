@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SOURCES } from "@/data/sources";
 
 const CATEGORIES = [
   {
@@ -38,46 +37,42 @@ export function LocationSection() {
   return (
     <section id="location" className="scroll-mt-24 border-b border-line bg-canvas">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <h2 className="font-serif text-3xl text-ink sm:text-4xl">Northwest Brampton Living</h2>
-            <p className="mt-4 text-ink-muted">
-              Cornerstone is in Northwest Brampton, Ontario, near the Mississauga Road
-              corridor. Primont’s official project page does not currently publish a civic
-              address, so this section describes the surrounding city context rather than
-              claiming a precise intersection.
-            </p>
-            <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl border border-line">
-              <Image
-                src="/images/pond-rendering.png"
-                alt="Artist's concept of the Cornerstone community beside a pond in Northwest Brampton."
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div className="grid gap-4">
-            {CATEGORIES.map((item) => (
-              <article key={item.title} className="rounded-2xl border border-line bg-paper p-5">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-serif text-xl">{item.title}</h3>
-                  <p className="text-xs font-semibold tracking-wide text-gold uppercase">{item.status}</p>
-                </div>
-                <p className="mt-2 text-sm leading-6 text-ink-muted">{item.body}</p>
-              </article>
-            ))}
-          </div>
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold tracking-[0.2em] text-gold uppercase">Location</p>
+          <h2 className="mt-3 font-serif text-3xl text-ink sm:text-4xl">Northwest Brampton</h2>
+          <p className="mt-4 text-ink-muted">
+            Cornerstone is in Northwest Brampton, Ontario, near the Mississauga Road corridor.
+            Primont’s official project page does not currently publish a civic address, so this
+            section describes the surrounding city context rather than a precise intersection.
+          </p>
         </div>
-        <p className="mt-8 text-sm text-ink-muted">
-          Public sources used for this section include the City of Brampton, GO Transit / Metrolinx,
-          Peel District School Board, Dufferin-Peel Catholic District School Board, and William Osler
-          Health System. See{" "}
-          {SOURCES.filter((source) => source.authority !== "third-party-discovery")
-            .slice(4, 8)
-            .map((source) => source.title)
-            .join("; ")}
-          .
+
+        <div className="relative mt-10 aspect-[16/7] overflow-hidden rounded-2xl border border-line sm:aspect-[21/9]">
+          <Image
+            src="/images/pond-rendering.png"
+            alt="Artist's concept of the Cornerstone community beside a pond in Northwest Brampton."
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="mt-10 grid overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+          {CATEGORIES.map((item) => (
+            <article key={item.title} className="bg-paper px-5 py-6 sm:px-7 sm:py-8">
+              <p className="text-xs font-semibold tracking-[0.18em] text-gold uppercase">
+                {item.status}
+              </p>
+              <h3 className="mt-2 font-serif text-xl text-ink">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-ink-muted">{item.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <p className="mt-6 text-sm text-ink-muted">
+          Neighbourhood context is drawn from the City of Brampton, GO Transit / Metrolinx, Peel
+          District School Board, Dufferin-Peel Catholic District School Board, and William Osler
+          Health System. Travel times are omitted until a civic address is published.
         </p>
       </div>
     </section>
