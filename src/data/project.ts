@@ -24,7 +24,7 @@ export type ProjectFact = {
 };
 
 export const PAGE_VERSION = "2026.08.20.1";
-export const FORM_VERSION = "1.1.0";
+export const FORM_VERSION = "1.2.0";
 export const CONSENT_TEXT_VERSION = "2026-08-28.1";
 
 export const CONSENT_TEXT =

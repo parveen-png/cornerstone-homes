@@ -14,13 +14,11 @@ const buyerTimelineValues = BUYER_TIMELINE_OPTIONS.filter((option) => option.val
   (option) => option.value,
 ) as [string, ...string[]];
 
-const optionalPhone = z
+const phone = z
   .string()
   .trim()
-  .max(40)
-  .optional()
-  .or(z.literal(""))
-  .transform((value) => (value ? value : undefined));
+  .min(7, "Enter your phone number.")
+  .max(40, "Phone number is too long.");
 
 export const leadInputSchema = z.object({
   firstName: z
@@ -34,7 +32,7 @@ export const leadInputSchema = z.object({
     .min(1, "Enter your last name.")
     .max(80, "Last name is too long."),
   email: z.email("Enter a valid email address.").max(254),
-  phone: optionalPhone,
+  phone,
   homeInterest: z
     .enum(homeInterestValues)
     .optional()

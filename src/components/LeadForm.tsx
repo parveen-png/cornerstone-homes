@@ -15,6 +15,7 @@ type FormState = {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   consent: boolean;
   companyWebsite: string;
 };
@@ -23,6 +24,7 @@ const INITIAL: FormState = {
   firstName: "",
   lastName: "",
   email: "",
+  phone: "",
   consent: false,
   companyWebsite: "",
 };
@@ -192,7 +194,18 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
           error={errors.email}
           onChange={(value) => update("email", value)}
           onFocus={markStart}
-          className="sm:col-span-2"
+        />
+        <Field
+          id={`${id}-phone`}
+          label="Phone"
+          type="tel"
+          required
+          autoComplete="tel"
+          inputMode="tel"
+          value={values.phone}
+          error={errors.phone}
+          onChange={(value) => update("phone", value)}
+          onFocus={markStart}
         />
       </div>
 

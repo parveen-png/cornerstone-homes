@@ -53,7 +53,7 @@ export async function captureLead(
     firstName: sanitizeText(data.firstName, 80),
     lastName: sanitizeText(data.lastName, 80),
     email,
-    phone: sanitizePhone(data.phone),
+    phone: sanitizePhone(data.phone) ?? sanitizeText(data.phone, 40),
     id: randomUUID(),
     consentText: CONSENT_TEXT,
     consentTextVersion: data.consentTextVersion || CONSENT_TEXT_VERSION,
