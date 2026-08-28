@@ -16,8 +16,8 @@ export function HomeTypes() {
           <article className="overflow-hidden rounded-2xl border border-line bg-paper">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/images/supporting-townhomes.jpg"
-                alt="Supporting photograph of contemporary townhome-style housing. Not a Cornerstone model or official rendering."
+                src="/images/pond-rendering.png"
+                alt="Artist's concept of Cornerstone townhomes beside a landscaped pond."
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -38,8 +38,8 @@ export function HomeTypes() {
           <article className="overflow-hidden rounded-2xl border border-line bg-paper">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/images/supporting-detached.jpg"
-                alt="Supporting photograph of a contemporary detached house. Not a Cornerstone model or official rendering."
+                src="/images/detached.jpg"
+                alt="Artist's concept of a Cornerstone detached home."
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

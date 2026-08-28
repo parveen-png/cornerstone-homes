@@ -1,8 +1,8 @@
-Supporting photographs in /public/images are not Cornerstone renderings and are not produced by Primont Homes.
+Cornerstone project images in /public/images:
 
-- supporting-townhomes.jpg — Unsplash, contemporary townhome-style housing
-- supporting-detached.jpg — Unsplash, contemporary detached house
-- supporting-park.jpg — Unsplash, forest / park landscape
-- supporting-skyline.jpg — Unsplash, city buildings (reserved)
+- logo.png — Cornerstone wordmark and monogram, displayed on a white header
+- hero.jpg — hero streetscape rendering of townhomes
+- detached.jpg — detached home rendering
+- pond-rendering.png — townhomes beside a pond
 
-Abstract SVG illustrations are kept as fallbacks only. Replace these files with authorized Cornerstone assets before describing any image as the project.
+Renderings are artists' concepts and may not represent the final community.

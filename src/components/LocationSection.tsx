@@ -47,10 +47,10 @@ export function LocationSection() {
               address, so this section describes the surrounding city context rather than
               claiming a precise intersection.
             </p>
-            <div className="relative mt-8 aspect-[4/5] overflow-hidden rounded-2xl border border-line">
+            <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl border border-line">
               <Image
-                src="/images/supporting-park.jpg"
-                alt="Sunlit forest landscape used as supporting location photography. Not a Cornerstone amenity photo."
+                src="/images/pond-rendering.png"
+                alt="Artist's concept of the Cornerstone community beside a pond in Northwest Brampton."
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"

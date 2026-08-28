@@ -64,8 +64,8 @@ export function Footer() {
         <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
           <p className="text-xs leading-6 text-canvas-warm">{DISCLOSURE.footer}</p>
           <p className="mt-4 text-xs text-canvas-warm/80">
-            © {year} {copyrightName}. All rights reserved. Photo credits: Unsplash supporting
-            photography; images are not Cornerstone renderings.
+            © {year} {copyrightName}. All rights reserved. Project renderings are artists’
+            concepts.
           </p>
         </div>
       </div>

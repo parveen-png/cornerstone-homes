@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CTA, SITE } from "@/data/project";
@@ -17,10 +18,17 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-canvas/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="font-serif text-lg tracking-tight text-ink sm:text-xl">
-          {SITE.name}
+    <header className="sticky top-0 z-40 border-b border-line bg-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 lg:px-8">
+        <Link href="/" className="flex shrink-0 items-center bg-white py-1">
+          <Image
+            src="/images/logo.png"
+            alt={SITE.name}
+            width={184}
+            height={95}
+            priority
+            className="h-12 w-auto bg-white sm:h-[3.35rem]"
+          />
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
           {NAV.map((item) => (
@@ -50,7 +58,7 @@ export function Header() {
           </Link>
           <button
             type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line bg-white"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -68,7 +76,7 @@ export function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-t border-line bg-paper px-4 py-3 md:hidden"
+          className="border-t border-line bg-white px-4 py-3 md:hidden"
         >
           <ul className="flex flex-col gap-1">
             {NAV.map((item) => (

@@ -7,14 +7,14 @@ export function Hero() {
     <section className="relative overflow-hidden border-b border-line bg-forest-deep text-paper">
       <div className="absolute inset-0">
         <Image
-          src="/images/supporting-townhomes.jpg"
-          alt="Contemporary townhome-style houses along a landscaped street. Supporting photography; not an official Cornerstone rendering."
+          src="/images/hero.jpg"
+          alt="Artist's concept of Cornerstone townhomes on a landscaped street in Northwest Brampton."
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-35"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep via-forest-deep/88 to-forest-deep/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/90 via-forest-deep/70 to-forest-deep/25" />
       </div>
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:items-start lg:px-8 lg:py-24">
         <div>
@@ -40,9 +40,9 @@ export function Hero() {
             ))}
           </ul>
           <p className="mt-6 max-w-xl text-xs leading-5 text-canvas-warm/80">
-            Photograph is supporting residential architecture, not a Cornerstone home or
-            official Primont rendering. Facts last verified {PROJECT.verificationDateDisplay} from
-            Primont’s official project page.
+            Rendering is an artist’s concept and may not represent the final community.
+            Facts last verified {PROJECT.verificationDateDisplay} from Primont’s official
+            project page.
           </p>
         </div>
         <LeadForm id="hero-register" />

@@ -50,11 +50,10 @@ export function JsonLd() {
     {
       "@type": "ImageObject",
       "@id": imageId,
-      url: absoluteUrl("/images/supporting-townhomes.jpg"),
-      contentUrl: absoluteUrl("/images/supporting-townhomes.jpg"),
-      caption:
-        "Supporting photograph of contemporary townhome-style housing. Not an official Cornerstone rendering.",
-      creditText: "Unsplash supporting photography, not a Primont project rendering.",
+      url: absoluteUrl("/images/hero.jpg"),
+      contentUrl: absoluteUrl("/images/hero.jpg"),
+      caption: "Artist's concept of Cornerstone townhomes in Northwest Brampton.",
+      creditText: "Project rendering. Artist's concept; not a photograph of completed homes.",
     },
     {
       "@type": "FAQPage",
