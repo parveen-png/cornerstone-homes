@@ -196,7 +196,7 @@ export const LAUNCH_BLOCKERS = [
     id: "lead-destination",
     label: "Lead CRM / webhook / email destination",
     detail:
-      "Configure LEAD_WEBHOOK_URL and/or Resend notification email variables. Until then, submissions are stored only through the documented launch placeholder.",
+      "Configure Google Sheets, LEAD_WEBHOOK_URL and/or Resend notification email variables. Until then, submissions are stored only through the documented launch placeholder.",
   },
   {
     id: "renderings",

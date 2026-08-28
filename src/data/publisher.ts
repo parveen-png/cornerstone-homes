@@ -30,7 +30,8 @@ export function getPublisher() {
     isConfigured,
     privacyReviewed: process.env.PRIVACY_POLICY_REVIEWED === "true",
     leadDestinationConfigured: Boolean(
-      process.env.LEAD_WEBHOOK_URL ||
+      process.env.GOOGLE_SHEETS_SPREADSHEET_ID ||
+        process.env.LEAD_WEBHOOK_URL ||
         process.env.LEAD_NOTIFY_EMAIL ||
         process.env.RESEND_API_KEY,
     ),

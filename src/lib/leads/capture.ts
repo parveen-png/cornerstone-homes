@@ -3,6 +3,7 @@ import { CONSENT_TEXT, CONSENT_TEXT_VERSION, FORM_VERSION, PAGE_VERSION } from "
 import { fileStoreAdapter } from "@/lib/leads/adapters/file-store";
 import { emailAdapter } from "@/lib/leads/adapters/email";
 import { webhookAdapter } from "@/lib/leads/adapters/webhook";
+import { sheetsAdapter } from "@/lib/leads/adapters/sheets";
 import type { LeadAdapter, LeadSendResult } from "@/lib/leads/adapter";
 import { flattenLeadErrors, leadInputSchema, type CapturedLead } from "@/lib/leads/schema";
 import { checkRateLimit, isDuplicateSubmission } from "@/lib/leads/rate-limit";
@@ -14,7 +15,7 @@ export type CaptureOutcome =
   | { ok: false; status: number; message: string; fieldErrors?: Record<string, string> };
 
 function adapters(): LeadAdapter[] {
-  return [fileStoreAdapter, webhookAdapter, emailAdapter];
+  return [sheetsAdapter, webhookAdapter, emailAdapter, fileStoreAdapter];
 }
 
 export async function captureLead(
@@ -78,6 +79,16 @@ export async function captureLead(
   }
 
   const results = await Promise.all(enabled.map((adapter) => adapter.send(captured)));
+  const sheetsResult = results.find((result) => result.adapter === "google-sheets");
+  if (sheetsAdapter.enabled && sheetsResult && !sheetsResult.ok) {
+    console.error("[lead:delivery-failed]", sheetsResult.error);
+    return {
+      ok: false,
+      status: 502,
+      message: "We couldn't submit your request. Please try again or contact us directly.",
+    };
+  }
+
   const anyDurable = results.some((result) => result.ok);
 
   if (!anyDurable) {

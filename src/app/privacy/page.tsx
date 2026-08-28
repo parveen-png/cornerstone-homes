@@ -47,9 +47,9 @@ export default function PrivacyPage() {
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Retention and sharing</h2>
       <p>
-        Lead records may be stored with a CRM, webhook destination or email provider configured for
-        this website. We do not sell personal information. Service providers process data only to
-        deliver the requested services.
+        Lead records may be stored in Google Sheets and, if configured, a CRM, webhook destination
+        or email provider for this website. We do not sell personal information. Service providers
+        process data only to deliver the requested services.
       </p>
       <h2 className="mt-10 font-serif text-2xl text-ink">Contact</h2>
       <p>

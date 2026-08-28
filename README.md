@@ -49,9 +49,11 @@ See `.env.example`.
 | `PUBLISHER_NAME` / `PUBLISHER_LEGAL_NAME` | Legal publisher or brokerage identity |
 | `PUBLISHER_EMAIL` / `PUBLISHER_PHONE` / `PUBLISHER_ADDRESS` | Public contact details |
 | `PRIVACY_POLICY_REVIEWED` | Set `true` only after counsel reviews `/privacy` |
-| `LEAD_FILE_STORE` | Launch placeholder JSONL store in `.data/leads.jsonl` (default on) |
+| `LEAD_FILE_STORE` | Optional JSONL store in `.data/leads.jsonl`. Off automatically when Google Sheets is configured unless set to `true`. |
 | `LEAD_WEBHOOK_URL` / `LEAD_WEBHOOK_SECRET` | CRM or automation webhook |
 | `LEAD_NOTIFY_EMAIL` / `LEAD_FROM_EMAIL` / `RESEND_API_KEY` | Internal notice + acknowledgement email via Resend |
+| `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET` / `GOOGLE_OAUTH_REFRESH_TOKEN` | Server-only OAuth credentials with Sheets access |
+| `GOOGLE_SHEETS_SPREADSHEET_ID` / `GOOGLE_SHEETS_TAB_NAME` | Destination spreadsheet and tab for captured leads |
 
 Do not put CRM credentials in client JavaScript.
 
@@ -65,13 +67,12 @@ Flow:
 2. Honeypot (`companyWebsite`)
 3. In-memory rate limit and duplicate-submit window
 4. Adapter routing:
-   - **file-store** — `.data/leads.jsonl` launch placeholder
+   - **google-sheets** — appends the lead to the configured Google Sheet
    - **webhook** — JSON POST to `LEAD_WEBHOOK_URL`
    - **email** — Resend internal notification plus registrant acknowledgement
+   - **file-store** — `.data/leads.jsonl` local fallback when Sheets is not configured
 
 Success copy never claims that a price list or floor plans were emailed.
-
-To add a CRM, implement another adapter in `src/lib/leads/adapters/` and register it in `src/lib/leads/capture.ts`.
 
 ## Analytics
 
@@ -124,8 +125,8 @@ Any Node host that supports Next.js 16 (Vercel, similar). Set all environment va
 1. `NEXT_PUBLIC_SITE_URL` is the public HTTPS origin
 2. Publisher identity is real
 3. Privacy policy has been reviewed
-4. At least one durable lead destination is configured
-5. `LEAD_FILE_STORE=false` in production if you do not want filesystem capture
+4. Google Sheets OAuth and spreadsheet ID are set (primary lead destination)
+5. `LEAD_FILE_STORE=false` in production unless you also want filesystem capture
 
 ## Launch blockers
 
@@ -134,7 +135,7 @@ Still required before public launch:
 - Legal publisher / brokerage name
 - Publisher contact details
 - Privacy policy review
-- Lead CRM / webhook / email destination
+- Google Sheets lead destination
 - Authorized project renderings (if the hero should show Cornerstone itself)
 
 Optional before publishing claims based on them:

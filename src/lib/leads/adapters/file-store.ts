@@ -1,5 +1,6 @@
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
+import { googleSheetsConfigured } from "@/lib/leads/adapters/sheets";
 import type { LeadAdapter, LeadSendResult } from "@/lib/leads/adapter";
 import { redactLeadForLogs } from "@/lib/leads/adapter";
 import type { CapturedLead } from "@/lib/leads/schema";
@@ -19,7 +20,12 @@ async function writeJsonl(lead: CapturedLead) {
 
 export const fileStoreAdapter: LeadAdapter = {
   name: "file-store",
-  enabled: process.env.LEAD_FILE_STORE !== "false",
+  get enabled() {
+    if (googleSheetsConfigured()) {
+      return process.env.LEAD_FILE_STORE === "true";
+    }
+    return process.env.LEAD_FILE_STORE !== "false";
+  },
   async send(lead: CapturedLead): Promise<LeadSendResult> {
     try {
       await writeJsonl(lead);
