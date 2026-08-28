@@ -9,7 +9,7 @@ export function StickyMobileCta() {
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 p-3 md:hidden">
       <Link
         href="/#register"
-        className="pointer-events-auto flex min-h-12 items-center justify-center rounded-full bg-forest px-5 font-semibold text-paper shadow-lg shadow-ink/10"
+        className="pointer-events-auto flex min-h-12 items-center justify-center rounded-md bg-forest px-5 font-semibold text-paper shadow-lg shadow-ink/10"
         onClick={() => trackEvent(ANALYTICS_EVENTS.heroCtaClick, { location: "sticky-mobile" })}
       >
         {CTA.primary}

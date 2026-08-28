@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { DISCLOSURE, PROJECT, SITE } from "@/data/project";
 import { getPublisher } from "@/data/publisher";
 import { AnalyticsLoader } from "@/components/AnalyticsLoader";
 import { absoluteUrl } from "@/lib/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -75,9 +70,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-CA"
-      className={`${fraunces.variable} ${sourceSans.variable} h-full scroll-smooth antialiased`}
+      className={`${poppins.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-canvas font-sans text-ink">
+      <body className={`${poppins.className} min-h-full bg-canvas font-sans text-ink`}>
         <a className="skip-link" href="#main">
           Skip to main content
         </a>

@@ -270,7 +270,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
           />
           <span>
             {CONSENT_TEXT}{" "}
-            <Link className="underline decoration-line underline-offset-2 hover:text-forest" href="/privacy">
+            <Link className="underline decoration-line underline-offset-2 hover:text-ink" href="/privacy">
               Privacy Policy
             </Link>
             .
@@ -290,7 +290,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
 
       <button
         type="submit"
-        className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-5 text-base font-semibold text-paper transition-colors hover:bg-forest-hover disabled:cursor-wait disabled:opacity-80"
+        className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-forest px-5 text-base font-semibold text-paper transition-colors hover:bg-forest-hover disabled:cursor-wait disabled:opacity-80"
         disabled={disabled}
       >
         {disabled ? "Sending your request…" : CTA.primary}

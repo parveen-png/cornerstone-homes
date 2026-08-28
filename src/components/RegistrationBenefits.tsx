@@ -41,7 +41,7 @@ export function RegistrationBenefits() {
           </p>
           <Link
             href="/#register"
-            className="mt-6 inline-flex min-h-12 items-center rounded-full bg-forest px-5 font-semibold text-paper hover:bg-forest-hover"
+            className="mt-6 inline-flex min-h-12 items-center rounded-md bg-forest px-5 font-semibold text-paper hover:bg-forest-hover"
           >
             {CTA.primary}
           </Link>

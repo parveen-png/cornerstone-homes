@@ -14,7 +14,7 @@ export function Hero() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/90 via-forest-deep/70 to-forest-deep/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/20" />
       </div>
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(20rem,0.9fr)] lg:items-start lg:px-8 lg:py-24">
         <div>
@@ -33,7 +33,7 @@ export function Hero() {
             {HIGHLIGHT_CHIPS.map((chip) => (
               <li
                 key={chip}
-                className="rounded-full border border-paper/20 bg-paper/10 px-3 py-1.5 text-sm text-paper"
+                className="rounded-md border border-white/25 bg-white/10 px-3 py-1.5 text-sm text-paper"
               >
                 {chip}
               </li>

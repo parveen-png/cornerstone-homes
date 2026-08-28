@@ -14,7 +14,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="mt-8 inline-flex min-h-12 items-center rounded-full bg-forest px-5 font-semibold text-paper"
+          className="mt-8 inline-flex min-h-12 items-center rounded-md bg-forest px-5 font-semibold text-paper"
         >
           Back to Cornerstone Brampton
         </Link>

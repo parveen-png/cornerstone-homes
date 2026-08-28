@@ -52,7 +52,7 @@ export function UnsubscribeForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex min-h-12 items-center rounded-full bg-forest px-5 font-semibold text-paper hover:bg-forest-hover disabled:opacity-80"
+          className="inline-flex min-h-12 items-center rounded-md bg-forest px-5 font-semibold text-paper hover:bg-forest-hover disabled:opacity-80"
         >
           {status === "submitting" ? "Sending your request…" : "Unsubscribe"}
         </button>

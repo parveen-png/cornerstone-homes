@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #f6f3ee;
-  --canvas-warm: #efe8dc;
-  --paper: #fffdf8;
-  --ink: #1e1c18;
-  --ink-muted: #5c574e;
-  --forest: #2f4a3c;
-  --forest-deep: #24382e;
-  --forest-hover: #3a5c4b;
-  --gold: #8a6f4a;
-  --line: #d9d1c3;
-  --focus: #1f4d3a;
-  --error: #8b2e2e;
+  --canvas: #f5f5f5;
+  --canvas-warm: #ececec;
+  --paper: #ffffff;
+  --ink: #111111;
+  --ink-muted: #5c5c5c;
+  --forest: #111111;
+  --forest-deep: #0a0a0a;
+  --forest-hover: #2c2c2c;
+  --gold: #6b6b6b;
+  --line: #e5e5e5;
+  --focus: #111111;
+  --error: #b42318;
   --header-offset: 5.25rem;
 }
 
@@ -29,8 +29,8 @@
   --color-line: var(--line);
   --color-focus: var(--focus);
   --color-error: var(--error);
-  --font-sans: var(--font-source-sans);
-  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-poppins);
+  --font-serif: var(--font-poppins);
 }
 
 html {
@@ -55,7 +55,7 @@ html {
 body {
   background: var(--canvas);
   color: var(--ink);
-  font-family: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.65;
 }
@@ -64,8 +64,9 @@ h1,
 h2,
 h3,
 .font-serif {
-  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 a:focus-visible,
@@ -83,7 +84,7 @@ summary:focus-visible {
   left: 1rem;
   top: -3rem;
   z-index: 80;
-  background: var(--forest-deep);
+  background: var(--ink);
   color: var(--paper);
   padding: 0.5rem 0.9rem;
   border-radius: 0.25rem;
