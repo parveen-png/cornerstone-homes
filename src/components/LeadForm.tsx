@@ -149,11 +149,11 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
       id={id}
       noValidate
       onSubmit={onSubmit}
-      className={`rounded-2xl border border-line bg-paper p-5 shadow-[0_1px_0_rgba(30,28,24,0.04)] sm:p-6 ${compact ? "" : "lg:p-7"}`}
+      className={`rounded-2xl border border-line bg-paper shadow-[0_1px_0_rgba(30,28,24,0.04)] ${compact ? "p-4 sm:p-5" : "p-5 sm:p-6 lg:p-7"}`}
       aria-describedby={`${id}-disclosure`}
     >
-      <h2 className="font-serif text-2xl text-ink">{heading}</h2>
-      <p className="mt-2 text-sm text-ink-muted">{CTA.supporting}</p>
+      <h2 className={`font-serif text-ink ${compact ? "text-xl" : "text-2xl"}`}>{heading}</h2>
+      {compact ? null : <p className="mt-2 text-sm text-ink-muted">{CTA.supporting}</p>}
 
       {status === "success" ? (
         <div
@@ -173,7 +173,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
         </div>
       ) : null}
 
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+      <div className={`${compact ? "mt-4 gap-3" : "mt-5 gap-4"} grid sm:grid-cols-2`}>
         <Field
           id={`${id}-firstName`}
           label="First Name"
@@ -230,17 +230,20 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
             { value: "", label: "Select an option" },
             ...HOME_INTEREST_OPTIONS,
           ]}
+          className={compact ? "sm:col-span-2" : undefined}
         />
-        <SelectField
-          id={`${id}-buyerTimeline`}
-          label="Buyer Timeline"
-          value={values.buyerTimeline}
-          error={errors.buyerTimeline}
-          onChange={(value) => update("buyerTimeline", value)}
-          onFocus={markStart}
-          options={[...BUYER_TIMELINE_OPTIONS]}
-          hint="Optional"
-        />
+        {compact ? null : (
+          <SelectField
+            id={`${id}-buyerTimeline`}
+            label="Buyer Timeline"
+            value={values.buyerTimeline}
+            error={errors.buyerTimeline}
+            onChange={(value) => update("buyerTimeline", value)}
+            onFocus={markStart}
+            options={[...BUYER_TIMELINE_OPTIONS]}
+            hint="Optional"
+          />
+        )}
       </div>
 
       <div className="honeypot" aria-hidden="true">
@@ -255,7 +258,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
         />
       </div>
 
-      <div className="mt-5">
+      <div className={compact ? "mt-4" : "mt-5"}>
         <label className="flex items-start gap-3 text-sm leading-6 text-ink">
           <input
             id={`${id}-consent`}
@@ -276,9 +279,15 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
             .
           </span>
         </label>
-        <p id={`${id}-consent-note`} className="mt-2 text-xs text-ink-muted">
-          You can unsubscribe at any time.
-        </p>
+        {compact ? (
+          <p id={`${id}-consent-note`} className="sr-only">
+            You can unsubscribe at any time.
+          </p>
+        ) : (
+          <p id={`${id}-consent-note`} className="mt-2 text-xs text-ink-muted">
+            You can unsubscribe at any time.
+          </p>
+        )}
         {errors.consent ? (
           <p id={`${id}-consent-error`} className="mt-1 text-sm text-error" role="alert">
             {errors.consent}
@@ -290,7 +299,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
 
       <button
         type="submit"
-        className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-forest px-5 text-base font-semibold text-paper transition-colors hover:bg-forest-hover disabled:cursor-wait disabled:opacity-80"
+        className={`${compact ? "mt-4" : "mt-5"} inline-flex min-h-12 w-full items-center justify-center rounded-md bg-forest px-5 text-base font-semibold text-paper transition-colors hover:bg-forest-hover disabled:cursor-wait disabled:opacity-80`}
         disabled={disabled}
       >
         {disabled ? "Sending your request…" : CTA.primary}
@@ -376,6 +385,7 @@ function SelectField({
   required,
   options,
   hint,
+  className,
 }: {
   id: string;
   label: string;
@@ -386,10 +396,11 @@ function SelectField({
   required?: boolean;
   options: readonly { value: string; label: string }[];
   hint?: string;
+  className?: string;
 }) {
   const errorId = `${id}-error`;
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={`flex flex-col gap-1.5 ${className ?? ""}`}>
       <label htmlFor={id} className="text-sm font-medium text-ink">
         {label}
         {required ? <span className="text-error"> *</span> : null}

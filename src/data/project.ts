@@ -173,13 +173,6 @@ export const PROJECT_FACTS: ProjectFact[] = [
   },
 ];
 
-export const HIGHLIGHT_CHIPS = [
-  "Townhomes & Detached Homes",
-  "3–5 Bedrooms",
-  "From the $600s",
-  "Coming September 2026",
-] as const;
-
 export const LAUNCH_BLOCKERS = [
   {
     id: "publisher",
