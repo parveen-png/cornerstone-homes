@@ -83,15 +83,46 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
     }
   }
 
+  function validate(current: FormState): Record<string, string> {
+    const next: Record<string, string> = {};
+    if (!current.firstName.trim()) next.firstName = "Enter your first name.";
+    if (!current.lastName.trim()) next.lastName = "Enter your last name.";
+    const email = current.email.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      next.email = "Enter a valid email address.";
+    }
+    if (current.phone.trim().replace(/\D/g, "").length < 7) {
+      next.phone = "Enter your phone number.";
+    }
+    if (!current.consent) next.consent = "Consent is required to receive updates.";
+    return next;
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("submitting");
     setServerMessage("");
     trackEvent(ANALYTICS_EVENTS.formSubmitAttempt, { form_id: id });
 
+    const localErrors = validate(values);
+    if (Object.keys(localErrors).length > 0) {
+      setErrors(localErrors);
+      setStatus("error");
+      setServerMessage("Please correct the highlighted fields.");
+      Object.keys(localErrors).forEach((field) => {
+        trackEvent(ANALYTICS_EVENTS.formFieldError, { form_id: id, field });
+      });
+      return;
+    }
+
+    setStatus("submitting");
+
     const payload = {
       ...values,
-      consent: values.consent ? true : undefined,
+      firstName: values.firstName.trim(),
+      lastName: values.lastName.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+      consent: true,
       consentTimestamp: new Date().toISOString(),
       ...readAttribution(),
     };
@@ -227,7 +258,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
             id={`${id}-consent`}
             name="consent"
             type="checkbox"
-            className="mt-1 h-5 w-5 shrink-0 accent-forest"
+            className={`mt-1 h-5 w-5 shrink-0 accent-forest ${errors.consent ? "outline outline-2 outline-error" : ""}`}
             checked={values.consent}
             onChange={(event) => update("consent", event.target.checked)}
             onFocus={markStart}
@@ -312,7 +343,9 @@ function Field({
         onFocus={onFocus}
         aria-invalid={Boolean(error)}
         aria-describedby={`${hintId} ${errorId}`}
-        className="min-h-12 rounded-xl border border-line bg-canvas px-3 text-base text-ink"
+        className={`min-h-12 rounded-xl border bg-canvas px-3 text-base text-ink ${
+          error ? "border-error" : "border-line"
+        }`}
       />
       <span id={hintId} className="sr-only">
         {hint || ""}

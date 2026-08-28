@@ -20,6 +20,17 @@ const phone = z
   .min(7, "Enter your phone number.")
   .max(40, "Phone number is too long.");
 
+function optionalClipped(max: number) {
+  return z
+    .string()
+    .optional()
+    .or(z.literal(""))
+    .transform((value) => {
+      const trimmed = (value ?? "").trim();
+      return trimmed ? trimmed.slice(0, max) : undefined;
+    });
+}
+
 export const leadInputSchema = z.object({
   firstName: z
     .string()
@@ -31,7 +42,11 @@ export const leadInputSchema = z.object({
     .trim()
     .min(1, "Enter your last name.")
     .max(80, "Last name is too long."),
-  email: z.email("Enter a valid email address.").max(254),
+  email: z
+    .string()
+    .trim()
+    .max(254, "Email is too long.")
+    .pipe(z.email("Enter a valid email address.")),
   phone,
   homeInterest: z
     .enum(homeInterestValues)
@@ -47,25 +62,25 @@ export const leadInputSchema = z.object({
     error: "Consent is required to receive updates.",
   }),
   companyWebsite: z.string().max(0, "Invalid submission.").optional().or(z.literal("")),
-  landingPageUrl: z.string().trim().max(2048).optional(),
-  pageVersion: z.string().trim().max(40).optional(),
-  referrer: z.string().trim().max(2048).optional(),
-  utmSource: z.string().trim().max(200).optional(),
-  utmMedium: z.string().trim().max(200).optional(),
-  utmCampaign: z.string().trim().max(200).optional(),
-  utmTerm: z.string().trim().max(200).optional(),
-  utmContent: z.string().trim().max(200).optional(),
-  gclid: z.string().trim().max(200).optional(),
-  wbraid: z.string().trim().max(200).optional(),
-  gbraid: z.string().trim().max(200).optional(),
-  msclkid: z.string().trim().max(200).optional(),
-  fbclid: z.string().trim().max(200).optional(),
-  ttclid: z.string().trim().max(200).optional(),
-  liFatId: z.string().trim().max(200).optional(),
-  formVersion: z.string().trim().max(40).optional(),
-  consentTextVersion: z.string().trim().max(40).optional(),
-  consentTimestamp: z.string().trim().max(80).optional(),
-  timezone: z.string().trim().max(80).optional(),
+  landingPageUrl: optionalClipped(2048),
+  pageVersion: optionalClipped(40),
+  referrer: optionalClipped(2048),
+  utmSource: optionalClipped(200),
+  utmMedium: optionalClipped(200),
+  utmCampaign: optionalClipped(200),
+  utmTerm: optionalClipped(200),
+  utmContent: optionalClipped(200),
+  gclid: optionalClipped(200),
+  wbraid: optionalClipped(200),
+  gbraid: optionalClipped(200),
+  msclkid: optionalClipped(200),
+  fbclid: optionalClipped(200),
+  ttclid: optionalClipped(200),
+  liFatId: optionalClipped(200),
+  formVersion: optionalClipped(40),
+  consentTextVersion: optionalClipped(40),
+  consentTimestamp: optionalClipped(80),
+  timezone: optionalClipped(80),
 });
 
 export type LeadInput = z.infer<typeof leadInputSchema>;
