@@ -270,7 +270,7 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
           />
           <span>
             {CONSENT_TEXT}{" "}
-            <Link className="underline decoration-line underline-offset-2 hover:text-ink" href="/privacy">
+            <Link className="underline decoration-line underline-offset-2 hover:text-forest" href="/privacy">
               Privacy Policy
             </Link>
             .

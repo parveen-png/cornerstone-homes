@@ -57,7 +57,7 @@ export function ProjectFacts() {
         <p className="mt-4 text-sm text-ink-muted">
           Last verified: {PROJECT.verificationDateDisplay}. Official source:{" "}
           <a
-            className="underline decoration-line underline-offset-2 hover:text-ink"
+            className="underline decoration-line underline-offset-2 hover:text-forest"
             href={PROJECT.officialProjectUrl}
             rel="noopener noreferrer"
             target="_blank"

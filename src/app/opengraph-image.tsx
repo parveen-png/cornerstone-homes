@@ -14,21 +14,21 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#111111",
-          color: "#FFFFFF",
+          background: "#1B3D2E",
+          color: "#FFFCF7",
           padding: "64px",
           fontFamily: "Arial, Helvetica, sans-serif",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ fontSize: 20, letterSpacing: "0.22em", textTransform: "uppercase", color: "#C8C8C8" }}>
+          <div style={{ fontSize: 20, letterSpacing: "0.22em", textTransform: "uppercase", color: "#E8D5A3" }}>
             Coming September 2026 · Northwest Brampton
           </div>
           <div style={{ fontSize: 68, lineHeight: 1.08, maxWidth: 980, fontWeight: 600 }}>
             Cornerstone by Primont in Brampton
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#D6D6D6" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, color: "#E8E2D4" }}>
           <span>Townhomes & detached homes · From the $600s</span>
           <span>Independent information resource</span>
         </div>

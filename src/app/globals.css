@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --canvas: #f5f5f5;
-  --canvas-warm: #ececec;
-  --paper: #ffffff;
-  --ink: #111111;
-  --ink-muted: #5c5c5c;
-  --forest: #111111;
-  --forest-deep: #0a0a0a;
-  --forest-hover: #2c2c2c;
-  --gold: #6b6b6b;
-  --line: #e5e5e5;
-  --focus: #111111;
+  --canvas: #f4f1ea;
+  --canvas-warm: #e8e2d4;
+  --paper: #fffcf7;
+  --ink: #1c1b18;
+  --ink-muted: #5c574e;
+  --forest: #2c5a43;
+  --forest-deep: #1b3d2e;
+  --forest-hover: #3a7356;
+  --gold: #b08948;
+  --line: #ddd4c4;
+  --focus: #2c5a43;
   --error: #b42318;
   --header-offset: 5.25rem;
 }
@@ -84,7 +84,7 @@ summary:focus-visible {
   left: 1rem;
   top: -3rem;
   z-index: 80;
-  background: var(--ink);
+  background: var(--forest-deep);
   color: var(--paper);
   padding: 0.5rem 0.9rem;
   border-radius: 0.25rem;

@@ -9,7 +9,7 @@ export function Footer() {
   const copyrightName = publisher.displayName || SITE.name;
 
   return (
-    <footer className="bg-ink text-canvas">
+    <footer className="bg-forest-deep text-canvas">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8">
         <div>
           <p className="font-serif text-2xl">{SITE.name}</p>

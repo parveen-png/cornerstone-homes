@@ -21,7 +21,7 @@ export function DeveloperSection() {
           href={PROJECT.officialAboutUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex min-h-12 items-center text-ink underline decoration-line underline-offset-4 hover:text-ink-muted"
+          className="mt-6 inline-flex min-h-12 items-center text-forest underline decoration-line underline-offset-4 hover:text-forest-deep"
         >
           Primont Homes official website
         </a>
