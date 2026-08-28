@@ -154,10 +154,14 @@ export function LeadForm({ id, heading = CTA.primary, compact = false }: LeadFor
       }
 
       trackEvent(ANALYTICS_EVENTS.generateLead, { form_id: id });
-      setStatus("success");
-      setServerMessage("You're registered for Cornerstone updates.");
-      setValues(INITIAL);
-      setErrors({});
+      const next = new URL("/thank-you", window.location.origin);
+      const current = new URLSearchParams(window.location.search);
+      for (const key of ["gclid", "wbraid", "gbraid", "gclsrc", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"]) {
+        const value = current.get(key);
+        if (value) next.searchParams.set(key, value);
+      }
+      window.location.assign(`${next.pathname}${next.search}`);
+      return;
     } catch {
       setStatus("error");
       setServerMessage("We couldn't submit your request. Please try again or contact us directly.");

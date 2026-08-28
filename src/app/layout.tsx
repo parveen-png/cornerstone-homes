@@ -29,10 +29,11 @@ export const metadata: Metadata = {
   publisher: publisherName,
   keywords: [
     "Cornerstone Brampton",
-    "Primont Homes",
-    "Northwest Brampton",
-    "townhomes",
-    "detached homes",
+    "Cornerstone Primont Homes",
+    "Northwest Brampton new homes",
+    "Primont townhomes Brampton",
+    "Brampton detached homes",
+    "Cornerstone from the $600s",
     "September 2026",
   ],
   alternates: {

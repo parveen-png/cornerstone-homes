@@ -14,7 +14,7 @@ export function FAQ() {
             <details key={item.question} className="group py-4">
               <summary className="cursor-pointer list-none font-medium text-ink marker:content-none">
                 <span className="flex items-start justify-between gap-4">
-                  <span>{item.question}</span>
+                  <h3 className="text-base font-medium">{item.question}</h3>
                   <span aria-hidden className="mt-1 text-gold group-open:hidden">
                     +
                   </span>

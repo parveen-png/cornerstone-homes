@@ -34,9 +34,9 @@ export const SITE = {
   name: "Cornerstone Brampton",
   shortName: "Cornerstone Brampton",
   tagline: "Independent information for Primont's Northwest Brampton community",
-  defaultTitle: "Cornerstone Brampton by Primont | New Homes & Updates",
+  defaultTitle: "Cornerstone Brampton by Primont Homes | Townhomes & Detached from the $600s",
   description:
-    "Cornerstone by Primont Homes is a master-planned community in Northwest Brampton with townhomes and detached homes coming September 2026, currently advertised from the $600s. Register for verified pricing, floor plans and project updates.",
+    "What is Cornerstone in Brampton? It is Primont Homes’ upcoming master-planned community in Northwest Brampton, with townhomes and detached homes coming September 2026, currently advertised from the $600s. Register for verified pricing and floor plans.",
   path: "/",
 } as const;
 

@@ -21,7 +21,7 @@ export function ProjectDefinition() {
             </h2>
           </div>
           <div className="border-l-2 border-gold/70 pl-5 sm:pl-7">
-            <p className="text-lg leading-8 text-ink">
+            <p id="direct-answer" className="text-lg leading-8 text-ink">
               Cornerstone is an upcoming master-planned residential community by Primont Homes
               in Northwest Brampton, Ontario. Primont currently plans a September 2026 release
               of townhomes and detached homes, with 3–5 bedroom options and prices coming soon

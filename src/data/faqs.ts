@@ -53,6 +53,6 @@ export const FAQS: FaqItem[] = [
   },
   {
     question: "How can I receive Cornerstone pricing and release updates?",
-    answer: `Submit the update request on this page with your name and email. Independent of Primont’s own registration list, we share new verified pricing, floor plans and release information for ${PROJECT.name} as it becomes available. You can unsubscribe at any time.`,
+    answer: `Submit the request form on this independent Cornerstone Brampton page with your name, email and phone. We share new verified pricing, floor plans and release information for ${PROJECT.name} when Primont publishes it. You can unsubscribe at any time.`,
   },
 ];

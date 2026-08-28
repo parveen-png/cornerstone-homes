@@ -4,6 +4,7 @@ export const ANALYTICS_EVENTS = {
   formFieldError: "form_field_error",
   formSubmitAttempt: "form_submit_attempt",
   generateLead: "generate_lead",
+  thankYouView: "thank_you_view",
   phoneClick: "phone_click",
   emailClick: "email_click",
   documentDownload: "document_download",

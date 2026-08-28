@@ -72,7 +72,7 @@ Flow:
    - **email** — Resend internal notification plus registrant acknowledgement
    - **file-store** — `.data/leads.jsonl` local fallback when Sheets is not configured
 
-Success copy never claims that a price list or floor plans were emailed.
+Success copy never claims that a price list or floor plans were emailed. Successful form submits redirect to `/thank-you` for Google Ads destination conversions.
 
 ## Analytics
 
@@ -83,6 +83,7 @@ Events (no names, emails, phones or free text):
 - `form_field_error`
 - `form_submit_attempt`
 - `generate_lead` — only after confirmed server capture
+- `thank_you_view` — `/thank-you` conversion page
 - `phone_click`
 - `email_click`
 - `document_download` — only if a real download is later added

@@ -10,6 +10,8 @@ export function JsonLd() {
   const websiteId = `${pageUrl}#website`;
   const webpageId = `${pageUrl}#webpage`;
   const imageId = `${pageUrl}#hero-image`;
+  const placeId = `${pageUrl}#cornerstone`;
+  const cityId = `${pageUrl}#brampton`;
 
   const graph = [
     {
@@ -32,20 +34,74 @@ export function JsonLd() {
       inLanguage: "en-CA",
     },
     {
+      "@type": "City",
+      "@id": cityId,
+      name: PROJECT.city,
+      containedInPlace: {
+        "@type": "AdministrativeArea",
+        name: PROJECT.province,
+        containedInPlace: { "@type": "Country", name: PROJECT.country },
+      },
+    },
+    {
+      "@type": "Residence",
+      "@id": placeId,
+      name: `${PROJECT.name} by ${PROJECT.developer}`,
+      alternateName: ["Cornerstone Brampton", "Cornerstone Primont Homes"],
+      description: SITE.description,
+      url: pageUrl,
+      image: absoluteUrl("/images/hero.jpg"),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: PROJECT.city,
+        addressRegion: "ON",
+        addressCountry: "CA",
+      },
+      containedInPlace: { "@id": cityId },
+      brand: {
+        "@type": "Organization",
+        name: PROJECT.developer,
+        url: PROJECT.officialDeveloperUrl,
+      },
+      additionalProperty: [
+        { "@type": "PropertyValue", name: "Status", value: PROJECT.status },
+        { "@type": "PropertyValue", name: "Release", value: PROJECT.releaseTimingDisplay },
+        { "@type": "PropertyValue", name: "Home types", value: PROJECT.housingTypesCurrent.join(", ") },
+        { "@type": "PropertyValue", name: "Bedrooms", value: PROJECT.bedroomsDisplay },
+        { "@type": "PropertyValue", name: "Pricing", value: PROJECT.pricingDisplay },
+      ],
+      citation: PROJECT.officialProjectUrl,
+    },
+    {
       "@type": "WebPage",
       "@id": webpageId,
       url: pageUrl,
       name: SITE.defaultTitle,
       description: SITE.description,
       isPartOf: { "@id": websiteId },
-      about: {
-        "@type": "Thing",
-        name: `${PROJECT.name} by ${PROJECT.developer}`,
-        description: `${PROJECT.communityType} in ${PROJECT.region}, ${PROJECT.province}.`,
-      },
+      about: { "@id": placeId },
       primaryImageOfPage: { "@id": imageId },
       inLanguage: "en-CA",
       dateModified: PROJECT.verificationDateIso,
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["#overview h2", "#direct-answer"],
+      },
+      breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+      mainEntity: { "@id": placeId },
+      citation: PROJECT.officialProjectUrl,
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Cornerstone Brampton",
+          item: pageUrl,
+        },
+      ],
     },
     {
       "@type": "ImageObject",
@@ -58,6 +114,8 @@ export function JsonLd() {
     {
       "@type": "FAQPage",
       "@id": `${pageUrl}#faq`,
+      url: `${pageUrl}#faq`,
+      isPartOf: { "@id": webpageId },
       mainEntity: FAQS.map((item) => ({
         "@type": "Question",
         name: item.question,
