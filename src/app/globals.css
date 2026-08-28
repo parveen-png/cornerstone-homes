@@ -6,12 +6,12 @@
   --paper: #fffcf7;
   --ink: #1c1b18;
   --ink-muted: #5c574e;
-  --forest: #2c5a43;
-  --forest-deep: #1b3d2e;
-  --forest-hover: #3a7356;
-  --gold: #b08948;
+  --forest: #1f3d5c;
+  --forest-deep: #152a40;
+  --forest-hover: #2b5580;
+  --gold: #c4a15a;
   --line: #ddd4c4;
-  --focus: #2c5a43;
+  --focus: #1f3d5c;
   --error: #b42318;
   --header-offset: 5.25rem;
 }
