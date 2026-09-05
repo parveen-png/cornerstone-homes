@@ -73,12 +73,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-CA"
       className={`${poppins.variable} h-full scroll-smooth antialiased`}
     >
+      <AnalyticsLoader />
       <body className={`${poppins.className} min-h-full bg-canvas font-sans text-ink`}>
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
         {children}
-        <AnalyticsLoader />
         <p className="sr-only">{DISCLOSURE.short}</p>
       </body>
     </html>

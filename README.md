@@ -45,7 +45,7 @@ See `.env.example`.
 | Variable | Purpose |
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin for metadata, sitemap, JSON-LD and emails |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional GA4 measurement ID. Loaded lazily. Never receives PII. |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 measurement ID. Loaded in the document head on every page. Never receives PII. |
 | `PUBLISHER_NAME` / `PUBLISHER_LEGAL_NAME` | Legal publisher or brokerage identity |
 | `PUBLISHER_EMAIL` / `PUBLISHER_PHONE` / `PUBLISHER_ADDRESS` | Public contact details |
 | `PRIVACY_POLICY_REVIEWED` | Set `true` only after counsel reviews `/privacy` |
